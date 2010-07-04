@@ -1,8 +1,12 @@
 var http = require('http');
+var url = require("url");
+
+var app = require("./app");
+var route = app.route;
 
 http.createServer(function(req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write('Party Box');
+  var handler = route(req.method, req.url);
+  handler(req, res);
   res.end();
 }).listen(3000);
 
