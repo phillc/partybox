@@ -1,11 +1,19 @@
-var mc = exports;
-
-var state = 'Stopped';
-
-mc.states = {
-  stopped: 'Stopped'
+var states = {
+  stopped: 'Stopped',
+  paused: 'Paused',
+  playing: 'Playing'
 }
 
-mc.getState = function() { return state; }
+var mc = function() {
+  this.state = states.stopped;
+};
 
-mc.play = function() { state = 'Playing'; }
+mc.prototype.getState = function() { return this.state; }
+
+mc.prototype.play = function() { this.state = states.playing; }
+
+mc.prototype.stop = function() { this.state = states.stopped; }
+
+mc.prototype.pause = function() { this.state = states.paused; }
+
+module.exports = mc;
