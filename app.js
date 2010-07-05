@@ -1,10 +1,16 @@
 var sys = require("sys");
 var readFile = require("fs").readFile;
 
-require('express')
+require('express');
+
+configure(function(){
+  set('root', __dirname)
+})
 
 get('/', function(){
-  return "Party Box";
+  this.render('index.html.haml', {
+    layout: false
+  })
 })
 
 run();

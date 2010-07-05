@@ -1,0 +1,27 @@
+!!!
+%html{ lang: "en" }
+  %head
+    %meta{ charset: "utf-8" }
+    %title Party Box
+      
+  %body
+    %form
+      %input{ type: "button", name: "play",  value: "Play",  disabled: true }
+      %input{ type: "button", name: "pause", value: "Pause", disabled: true }
+      %input{ type: "button", name: "stop",  value: "Stop",  disabled: true }
+      %input{ type: "button", name: "skip",  value: "Skip",  disabled: true }
+  %script{ type: "text/javascript", src: "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" }
+  :javascript
+    var client = new function() {
+      var _poll = function() {
+        $.get('/updates', function(messages) {
+          res.type
+        });
+      }
+      $.get('/current_state', function(state) {
+        last_message = state.last_message;
+        _poll();
+      });
+    }
+    var playing = function(current_track) {
+    };
