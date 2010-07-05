@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <title>Party Box</title>
+  </head>
+  <body>
+    <form>
+      <input type="button" name="play"  value="Play"  disabled />
+      <input type="button" name="pause" value="Pause" disabled />
+      <input type="button" name="stop"  value="Stop"  disabled />
+      <input type="button" name="skip"  value="Skip"  disabled />
+    </form>
+  </body>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    var client = new function() {
+      var _poll = function() {
+        $.get('/updates', function(messages) {
+          res.type
+        });
+      }
+
+      $.get('/current_state', function(state) {
+        last_message = state.last_message;
+        _poll();
+      });
+    }
+    
+    var playing = function(current_track) {
+      
+    };
+  </script>
+  
+</html>

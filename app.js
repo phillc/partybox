@@ -1,37 +1,59 @@
 var sys = require("sys");
 var readFile = require("fs").readFile;
 
-var routes = {
-  get: {
-    '/': render_static('index.html')
-  },
-  post: {
-    '/play': function(req, res) {
-    },
-  }
-}
-
-function render_static(filename) { 
+var render_static = function(filename) { 
   return function(req, res) {
     sys.puts("loading static file: " + filename);
-    readFile("lib/" + file, function(err, data) {
+    readFile("static/" + filename, function(err, data) {
       if(err) {
         sys.puts("Error loading " + filename);
         sys.puts(err);
       } else {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.write('Party Box');
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        res.end();
       }
+    }); 
+  }
+}
+
+var updates = function(req, res) {
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  // var messages = look_up(since));
+  res.write('[]');
+  res.end();
+}
+
+var http404 = function(req, res) {
+  sys.puts("page not found: " + req.url);
+  res.writeHead(404, {'Content-Type': 'text/html'});
+  res.write("page not found");
+  res.end();
+}
+
+var routes = {
+  get: {
+    '/': render_static('index.html'),
+    '/updates': updates
+  },
+  post: {
+    '/play': function(req, res) {
     }
   }
 }
 
-exports.route = function(method, url){
-  if(method == "GET") {
-    routes.get[url];
-  } else if(method == "POST") {
+
+exports.router = function(method, url){
+  sys.puts("request " + method + ": " + url);
   
-  } else {
-    //unsupported method
+  var handler;
+  
+  if(method == "GET") {
+    handler = routes.get[url];
+  } else if(method == "POST") {
+    handler = routes.post[url];
   }
+  
+  handler = handler || http404;
+  return handler;
 }

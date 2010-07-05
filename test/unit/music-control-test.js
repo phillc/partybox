@@ -1,7 +1,7 @@
 var vows = require ('vows'),
     assert = require('assert');
 
-var musicControl = require('../lib/music-control');
+var musicControl = require('../../lib/music-control');
 
 vows.describe('Music Control').addBatch({
   'The Music Control': {
