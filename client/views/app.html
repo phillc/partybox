@@ -4,21 +4,18 @@
     <SocketStream>
     <meta charset="utf-8"/>
     <title>Welcome</title>
+    <script type="text/javascript" src="swfobject.js"></script>    
   </head>
   <body>
-    <div id="content">
-      <a href="https://github.com/socketstream/socketstream">
-        <img src="/images/logo.png" alt="SocketStream Logo" width="160" height="160">
-      </a>
-      <h1>Welcome to your new realtime app!</h1>
-
-      <!-- QUICK CHAT DEMO-->
-      <form id="demo" onsubmit="return false">
-        <h3>Quick Chat Demo</h3>
-        <h5>Open this page in multiple tabs or browsers and type a message below</h5>
-        <div id="chatlog"></div>
-        <input id="myMessage" type="text" autocomplete="off">
-      </form>
+    <div id="ytapiplayer">
+      You need Flash player 8+ and JavaScript enabled to view this video.
     </div>
+
+    <script type="text/javascript">
+      var params = { allowScriptAccess: "always" };
+      var atts = { id: "myytplayer" };
+      swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3",
+                         "ytapiplayer", "425", "356", "8", null, null, params, atts);
+    </script>
   </body>
 </html>
