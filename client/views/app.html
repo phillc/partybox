@@ -1,17 +1,21 @@
-!!! 5
-html(lang:"en")
-  head
-    meta(charset="utf-8")
-    meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
-    != SocketStream
-    title Party Box
-    script(type="text/javascript", src="swfobject.js")
-  body
-    div(id="partybox-player")
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <SocketStream>
+    <meta charset="utf-8"/>
+    <title>Welcome</title>
+    <script type="text/javascript" src="swfobject.js"></script>    
+  </head>
+  <body>
+    <div id="partybox-player">
       You need Flash player 8+ and JavaScript enabled to view this video.
+    </div>
 
-    script(type="text/javascript")
+    <script type="text/javascript">
       var params = { allowScriptAccess: "always" };
       var atts = { id: "partybox-player" };
       swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3",
                          "partybox-player", "425", "356", "8", null, null, params, atts);
+    </script>
+  </body>
+</html>
