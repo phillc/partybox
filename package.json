@@ -10,6 +10,7 @@
     "ss-stylus": "0.1.x",
     "ss-hogan": "0.1.x",
     "ss-coffee": "0.1.x",
-    "ss-jade": "0.1.x"
+    "ss-jade": "0.1.x",
+    "ss-sockjs": "0.1.x"
   }
 }
