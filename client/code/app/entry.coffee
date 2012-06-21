@@ -5,4 +5,6 @@ ss.server.on "disconnect", ->
 ss.server.on "reconnect", ->
   console.log "Connection back up :-)"
 
-$(document).ready -> require('/app')
+ss.server.on "ready", ->
+  jQuery ->
+    require "/app"
