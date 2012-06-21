@@ -2,7 +2,7 @@ http = require("http")
 ss = require("socketstream")
 
 ss.client.define "main",
-  view: "app.html"
+  view: "app.jade"
   css: [ "libs", "app.styl" ]
   code: [ "libs", "app" ]
   tmpl: "*"
