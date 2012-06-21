@@ -1,0 +1,8 @@
+div(id="partybox-player")
+  You need Flash player 8+ and JavaScript enabled to view this video.
+
+script(type="text/javascript")
+  var params = { allowScriptAccess: "always" };
+  var atts = { id: "partybox-player" };
+  swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3",
+                     "partybox-player", "425", "356", "8", null, null, params, atts);
