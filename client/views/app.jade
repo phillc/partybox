@@ -3,7 +3,41 @@ html(lang:"en" ng-app="partybox")
   head
     meta(charset="utf-8")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
-    != SocketStream
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
     title Party Box
+
+    link(href="/bootstrap/css/bootstrap.css", media="screen", rel="stylesheet", type="text/css")
+    != SocketStream
+    script(src="/bootstrap/js/bootstrap.js", type="text/javascript")
+
   body
-    div(ng-view)
+    div.navbar.navbar-fixed-top
+      div.navbar-inner
+        div.container
+          a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href="#") PartyBox
+          div.btn-group.pull-right
+            a.btn.dropdown-toggle(data-toggle="dropdown", href="#")
+              i.icon-user
+              "Username"
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href="#") Profile
+              li.divider
+              li
+                a(href="#") Sign Out
+          div.nav-collapse
+            ul.nav
+              li.active
+                a(href="#") Home
+              li
+                a(href="#about") Parties
+
+    .container
+      .row-fluid
+        div(ng-view)

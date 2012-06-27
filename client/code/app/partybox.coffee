@@ -12,9 +12,13 @@ window.getTemplate = (name) ->
 angular.module('partybox', [])
   .config(['$routeProvider', ($routeProvider) ->
     $routeProvider
-      .when('/', { template: getTemplate("party-player"), controller: PartyBoxCtrl })
-      .otherwise({ redirectTo: '/wtf' })
+      .when('/', { template: getTemplate("home"), controller: HomeCtrl })
+      .when('/player', { template: getTemplate("party-player"), controller: PartyBoxCtrl })
+      .otherwise({ redirectTo: '/404' })
    ])
+
+window.HomeCtrl = ($scope, $routeParams) ->
+  console.log "HomeCtrl!", $scope, $routeParams
 
 window.PartyBoxCtrl = ($scope, $routeParams) ->
   console.log "PartyBoxCtrl!", $scope, $routeParams
