@@ -5,4 +5,4 @@ ss.server.on "disconnect", ->
 ss.server.on "reconnect", ->
   console.log "Connection back up :-)"
 
-require('/partybox')
+$(document).ready -> require('/partybox')

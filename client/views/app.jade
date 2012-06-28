@@ -1,5 +1,5 @@
 !!! 5
-html(lang:"en" ng-app="partybox")
+html(lang:"en")
   head
     meta(charset="utf-8")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
@@ -40,4 +40,6 @@ html(lang:"en" ng-app="partybox")
 
     .container
       .row
-        div(ng-view)
+        script(type="text/handlebars")
+          p foo!!!
+          {{ outlet }}
