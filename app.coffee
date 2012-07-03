@@ -3,7 +3,7 @@ ss = require("socketstream")
 
 ss.client.define "main",
   view: "app.jade"
-  css: [ "app.styl" ]
+  css: [ "libs", "app.styl" ]
   code: [ "libs", "app" ]
   tmpl: "*"
 
@@ -14,7 +14,6 @@ ss.ws.transport.use require("ss-sockjs")
 ss.client.formatters.add require("ss-coffee")
 ss.client.formatters.add require("ss-jade")
 ss.client.formatters.add require("ss-stylus")
-ss.client.templateEngine.use('ember')
 ss.client.packAssets() if ss.env is "production"
 
 server = http.Server(ss.http.middleware)
