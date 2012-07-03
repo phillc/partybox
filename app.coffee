@@ -3,7 +3,7 @@ ss = require("socketstream")
 
 ss.client.define "main",
   view: "app.jade"
-  css: [ "libs", "app.styl" ]
+  css: [ "app.styl" ]
   code: [ "libs", "app" ]
   tmpl: "*"
 
