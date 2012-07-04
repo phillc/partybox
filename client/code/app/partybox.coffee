@@ -5,8 +5,9 @@ window.onYouTubePlayerReady = ->
 
 $ ->
   HomeView = Backbone.View.extend
-    initialize:
-      @template = _.template()
+    initialize: ->
+      @template = _.template($("#tmpl-home").html())
+
     render: ->
       $(@el).html @template()
       @
