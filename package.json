@@ -2,11 +2,11 @@
   "name": "partybox",
   "description": "An awesome real time application",
   "version": "0.0.1",
-  "author": "Me <me@mydomain.com>",
+  "author": "Phillip <spyyderz@gmail.com>",
   "private": true,
   "engines": { "node": ">= 0.6.0" },
   "dependencies": {
-    "socketstream": "0.3.x",
+    "socketstream": "0.3.2",
     "ss-stylus": "0.1.x",
     "ss-hogan": "0.1.x",
     "ss-coffee": "0.1.x",
