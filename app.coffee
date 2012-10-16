@@ -1,6 +1,7 @@
 http = require("http")
 ss = require("socketstream")
 everyauth = require("everyauth")
+models = require("./models")
 
 ss.client.define "main",
   view: "app.jade"
@@ -17,26 +18,25 @@ ss.client.formatters.add require("ss-jade")
 ss.client.formatters.add require("ss-stylus")
 ss.client.packAssets() if ss.env is "production"
 
+everyauth.everymodule.findUserById (userId, callback) ->
+  models.User.findById(userId, callback)
+
 everyauth.google
   .appId(process.env.PARTYBOX_APP_ID)
   .appSecret(process.env.PARTYBOX_APP_SECRET)
   .scope("https://www.googleapis.com/auth/userinfo.profile")
-  .handleAuthCallbackError (req, res) ->
-    console.log("error...")
   .findOrCreateUser (session, accessToken, accessTokenExtra, googleUserMetadata) ->
-    console.log("find or create...")
-    console.log session
-    console.log "***"
-    console.log accessToken
-    console.log "***"
-    console.log accessTokenExtra
-    console.log "***"
-    console.log googleUserMetadata
-    thatPromise = @promise
-    thatPromise
+    promise = @Promise()
+
+    models.User.findOrCreateForLogin googleUserMetadata, (err, user) ->
+      if err
+        promise.fail([err])
+      else
+        promise.fulfill(user)
+
+    return promise
   .redirectPath("/")
 
-# ss.http.middleware.prepend ss.http.connect.bodyParser()
 ss.http.middleware.append everyauth.middleware()
 
 server = http.Server(ss.http.middleware)
