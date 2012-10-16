@@ -1,0 +1,14 @@
+---
+applications:
+  .:
+    name: partybox
+    framework:
+      name: standalone
+      info:
+        mem: 64M
+        description: Standalone Application
+    runtime: node06
+    command: app.js
+    infra: aws
+    mem: 64M
+    instances: 1
