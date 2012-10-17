@@ -12,7 +12,6 @@ ss.client.define "main",
 ss.http.route "/", (req, res) ->
   res.serveClient "main"
 
-ss.ws.transport.use require("ss-sockjs")
 ss.client.formatters.add require("ss-coffee")
 ss.client.formatters.add require("ss-jade")
 ss.client.formatters.add require("ss-stylus")
@@ -37,6 +36,7 @@ everyauth.google
     return promise
   .redirectPath("/")
 
+ss.http.middleware.prepend ss.http.connect.bodyParser()
 ss.http.middleware.append everyauth.middleware()
 
 server = http.Server(ss.http.middleware)

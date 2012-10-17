@@ -4,15 +4,16 @@ window.onYouTubePlayerReady = ->
   player.cueVideoById("Gg290v572Zw")
 
 $ ->
-  UserModel = Backbone.Model.extend
+  UserModel = Backbone.Model.extend()
 
   HeaderView = Backbone.View.extend
     initialize: ->
       @template = _.template($("#tmpl-header").html())
+      @model.bind("change", this.render)
 
     render: ->
-      data = foo: "bar"
-      $(@el).html @template(data)
+      console.log @model
+      $(@el).html @template(currentUser: (@model.toJSON()))
       @
 
   HomeView = Backbone.View.extend
@@ -32,7 +33,8 @@ $ ->
 
   Router = Backbone.Router.extend
     initialize: ->
-      @headerView = new HeaderView
+      @currentUser = new UserModel
+      @headerView = new HeaderView(model: @currentUser)
       $("#header").html(@headerView.render().el)
     routes:
       "": "home"
