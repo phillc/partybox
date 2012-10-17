@@ -16,6 +16,7 @@ ss.client.formatters.add require("ss-coffee")
 ss.client.formatters.add require("ss-jade")
 ss.client.formatters.add require("ss-stylus")
 ss.client.packAssets() if ss.env is "production"
+ss.session.store.use("redis")
 
 everyauth.everymodule.findUserById (userId, callback) ->
   models.User.findById(userId, callback)
