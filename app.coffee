@@ -5,7 +5,7 @@ models = require("./models")
 
 ss.client.define "main",
   view: "app.jade"
-  css: [ "app.styl" ]
+  css: [ "app.styl", "auth-buttons.css" ]
   code: [ "libs", "app" ]
   tmpl: "*"
 
