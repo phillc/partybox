@@ -1,24 +1,8 @@
 div.navbar.navbar-fixed-top
   div.navbar-inner
     div.container
-      a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
       a.brand(href="#") PartyBox
-      div.btn-group.pull-right
-        a.btn.dropdown-toggle(data-toggle="dropdown", href="#")
-          i.icon-user
-          <%= currentUser %>
-          span.caret
-        ul.dropdown-menu
-          li
-            a(href="#") Profile
-          li
-            a(href="#") Your Parties
-          li.divider
-          li
-            a(href="#logout") Sign Out
+      div#user-nav.btn-group.pull-right
       div.nav-collapse
         ul.nav
           li.active

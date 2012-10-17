@@ -9,11 +9,15 @@ $ ->
   HeaderView = Backbone.View.extend
     initialize: ->
       @template = _.template($("#tmpl-header").html())
+      @loggedInTemplate = _.template($("#tmpl-header-logged_in").html())
+      @signInTemplate = _.template($("#tmpl-header-sign_in").html())
       @model.bind("change", this.render)
 
     render: ->
-      console.log @model
-      $(@el).html @template(currentUser: (@model.toJSON()))
+      $(@el).html @template(currentUser: @model)
+      $(@el)
+        .find("#user-nav")
+        .html((if @model.get("loggedIn") then @loggedInTemplate else @signInTemplate)(currentUser: @model))
       @
 
   HomeView = Backbone.View.extend
@@ -33,9 +37,10 @@ $ ->
 
   Router = Backbone.Router.extend
     initialize: ->
-      @currentUser = new UserModel
-      @headerView = new HeaderView(model: @currentUser)
-      $("#header").html(@headerView.render().el)
+      ss.rpc "user.currentUser", (err, data) ->
+        currentUser = new UserModel data
+        headerView = new HeaderView(model: currentUser)
+        $("#header").html(headerView.render().el)
     routes:
       "": "home"
       "party/new": "partyNew"
