@@ -1,8 +1,10 @@
+services = require("./services")
 mongoose = require("mongoose")
 mongoose.connect "mongodb://localhost/partybox"
 Schema = mongoose.Schema
 
 UserSchema = new Schema
+  youTubeId: String
   googleId: String
   name: String
   givenName: String
@@ -12,7 +14,7 @@ UserSchema = new Schema
   gender: String
   locale: String
 
-UserSchema.statics.findOrCreateForLogin = (metadata, callback) ->
+UserSchema.statics.findOrCreateForLogin = (metadata, authToken, callback) ->
   User.findOne {googleId: metadata.id}, (err, user) ->
     if err || user
       callback(err, user)
@@ -27,7 +29,14 @@ UserSchema.statics.findOrCreateForLogin = (metadata, callback) ->
       user.gender = metadata.gender
       user.locale = metadata.locale
 
-      user.save callback
+      services.youTube.getUserProfile authToken, (err, profile) ->
+        if err
+          callback err
+        else
+          console.log "profile:", profile
+          user.youTubeId = profile.entry.yt$userId.$t
+          console.log("saving user", user)
+          user.save callback
 
 User = mongoose.model("User", UserSchema)
 

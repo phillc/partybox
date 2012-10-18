@@ -34,7 +34,7 @@ everyauth.google
 
     promise = @Promise()
 
-    models.User.findOrCreateForLogin googleUserMetadata, (err, user) ->
+    models.User.findOrCreateForLogin googleUserMetadata, accessToken, (err, user) ->
       if err
         promise.fail([err])
       else

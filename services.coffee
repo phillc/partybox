@@ -2,16 +2,12 @@ https = require("https")
 querystring = require("querystring")
 config = require("./config")
 
-youtubeRequest = (path, authToken, params, callback) ->
+youtubeRequest = (path, headers, params, callback) ->
   options =
     hostname: "gdata.youtube.com"
     port: 443
     path: "/feeds/api/" + path + "?" + querystring.stringify(params)
-    headers:
-      "Accept": "application/json"
-      "User-Agent": "PartyBox"
-      # "X-GData-Key": config.youTubeDeveloperKey
-      "Authorization": "OAuth #{authToken}"
+    headers: headers
 
   console.log "Sending youtube request", options
   https.get options, (res) ->
@@ -32,10 +28,23 @@ youtubeRequest = (path, authToken, params, callback) ->
 exports.youTube =
   getUserProfile: (authToken, callback) ->
     params =
-      v: 2
       alt: "json"
+    headers =
+      "Accept": "application/json"
+      "User-Agent": "PartyBox"
+      # "X-GData-Key": config.youTubeDeveloperKey
+      "GData-Version": 2
+      "Authorization": "OAuth #{authToken}"
 
-    youtubeRequest "users/default", authToken, params, (err, profile) ->
-      callback err, profile
+    youtubeRequest "users/default", headers, params, callback
+
+  getUserPlaylists: (userId, callback) ->
+    params =
+      alt: "jsonc"
+    headers =
+      "Accept": "application/json"
+      "User-Agent": "PartyBox"
+      "GData-Version": 2
+    youtubeRequest "users/#{userId}/playlists", headers, params, callback
 
 
