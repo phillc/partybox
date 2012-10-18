@@ -2,6 +2,7 @@ http = require("http")
 ss = require("socketstream")
 everyauth = require("everyauth")
 models = require("./models")
+config = require("./config")
 
 ss.client.define "main",
   view: "app.jade"
@@ -22,10 +23,15 @@ everyauth.everymodule.findUserById (userId, callback) ->
   models.User.findById(userId, callback)
 
 everyauth.google
-  .appId(process.env.PARTYBOX_APP_ID)
-  .appSecret(process.env.PARTYBOX_APP_SECRET)
+  .appId(config.googleAppId)
+  .appSecret(config.googleAppSecret)
   .scope("https://www.googleapis.com/auth/userinfo.profile")
   .findOrCreateUser (session, accessToken, accessTokenExtra, googleUserMetadata) ->
+    console.log "logged in"
+    console.log "accessToken: ", accessToken
+    console.log "accessTokenExtra: ", accessTokenExtra
+    console.log "googleUserMetadata: ", googleUserMetadata
+
     promise = @Promise()
 
     models.User.findOrCreateForLogin googleUserMetadata, (err, user) ->

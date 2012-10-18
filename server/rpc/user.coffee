@@ -1,4 +1,5 @@
 models = require("../../models")
+services = require("../../services")
 
 exports.actions = (req, res, ss) ->
   req.use("session")
@@ -11,12 +12,14 @@ exports.actions = (req, res, ss) ->
           if err
             res err, loggedIn: false
           else
-            res err,
+            res null,
               loggedIn: true
               name: user?.name
       else
         res loggedIn: false
     logout: ->
-      res req.logout()
+      res null, req.logout()
+    youTubeProfile: ->
+      services.youTube.getUserProfile req.session?.auth?.google?.accessToken, res
 
   return actions

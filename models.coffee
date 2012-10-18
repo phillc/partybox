@@ -1,9 +1,8 @@
-mongoose = require('mongoose')
-mongoose.connect 'mongodb://localhost/partybox'
+mongoose = require("mongoose")
+mongoose.connect "mongodb://localhost/partybox"
 Schema = mongoose.Schema
 
 UserSchema = new Schema
-  youtubeId: String
   googleId: String
   name: String
   givenName: String
