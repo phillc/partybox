@@ -5,4 +5,16 @@ ss.server.on "disconnect", ->
 ss.server.on "reconnect", ->
   console.log "Connection back up :-)"
 
-$(document).ready -> require('/partybox')
+window.onYouTubePlayerReady = ->
+  player = $("#partybox-player").get(0)
+
+  player.cueVideoById("Gg290v572Zw")
+
+window.App = App = {}
+App.Models = {}
+App.Collections = {}
+App.Views = {}
+
+$ ->
+  window.App.router = new window.App.Router
+  Backbone.history.start()
