@@ -17,6 +17,8 @@
     "ss-sockjs": "0.1.x"
   },
   "devDependencies": {
-    "mocha": "1.7.0"
+    "charlatan": "0.1.1",
+    "mocha": "1.7.0",
+    "should": "1.2.1"
   }
 }

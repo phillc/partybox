@@ -36,7 +36,9 @@ exports.youTube =
       "GData-Version": 2
       "Authorization": "OAuth #{authToken}"
 
-    youtubeRequest "users/default", headers, params, callback
+    youtubeRequest "users/default", headers, params, (err, payload) ->
+      callback err,
+        youTubeId: payload.entry.yt$userId.$t
 
   getUserPlaylists: (userId, callback) ->
     params =

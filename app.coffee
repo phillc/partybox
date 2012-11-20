@@ -1,8 +1,10 @@
 http = require("http")
 ss = require("socketstream")
 everyauth = require("everyauth")
-models = require("./models")
+services = require("./services")
+models = require("./models")(services)
 config = require("./config")
+require("mongoose").connect "mongodb://localhost/partybox"
 
 ss.client.define "main",
   view: "app.jade"
