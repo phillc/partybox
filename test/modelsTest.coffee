@@ -1,6 +1,5 @@
-require("mongoose").connect "mongodb://localhost/partybox_test"
-servicesStub = require("./support/servicesStub")
-models = require("../models")(servicesStub)
+require("./testHelper")
+models = require("../models")
 should = require("should")
 Charlatan = require("charlatan")
 

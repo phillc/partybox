@@ -2,30 +2,30 @@ https = require("https")
 querystring = require("querystring")
 config = require("./config")
 
-youtubeRequest = (path, headers, params, callback) ->
-  options =
-    hostname: "gdata.youtube.com"
-    port: 443
-    path: "/feeds/api/" + path + "?" + querystring.stringify(params)
-    headers: headers
-
-  console.log "Sending youtube request", options
-  https.get options, (res) ->
-    data = ""
-    res.on "data", (chunk) -> data += chunk
-    res.on "end", ->
-      try
-        payload = JSON.parse(data)
-      catch error
-        console.log "Error parsing youtube api response", error, data
-        return callback error, data
-
-      if payload.error
-        callback payload.error, payload
-      else
-        callback null, payload
-
 exports.youTube =
+  _request: (path, headers, params, callback) ->
+    options =
+      hostname: "gdata.youtube.com"
+      port: 443
+      path: "/feeds/api/" + path + "?" + querystring.stringify(params)
+      headers: headers
+
+    console.log "Sending youtube request", options
+    https.get options, (res) ->
+      data = ""
+      res.on "data", (chunk) -> data += chunk
+      res.on "end", ->
+        try
+          payload = JSON.parse(data)
+        catch error
+          console.log "Error parsing youtube api response", error, data
+          return callback error, data
+
+        if payload.error
+          callback payload.error, payload
+        else
+          callback null, payload
+
   getUserProfile: (authToken, callback) ->
     params =
       alt: "json"

@@ -2,7 +2,7 @@ http = require("http")
 ss = require("socketstream")
 everyauth = require("everyauth")
 services = require("./services")
-models = require("./models")(services)
+models = require("./models")
 config = require("./config")
 require("mongoose").connect "mongodb://localhost/partybox"
 
