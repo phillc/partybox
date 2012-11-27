@@ -1,5 +1,5 @@
 sinon = require("sinon")
-services = require("./../services")
+services = require("../../services")
 
 require("mongoose").connect "mongodb://localhost/partybox_test"
 

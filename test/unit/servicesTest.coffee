@@ -1,6 +1,6 @@
 require("./testHelper")
 should = require("should")
-services = require("./../services")
+services = require("../../services")
 Charlatan = require("charlatan")
 
 describe "youTube", ->

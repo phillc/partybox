@@ -1,6 +1,6 @@
 require("./testHelper")
-models = require("../models")
-services = require("../services")
+models = require("../../models")
+services = require("../../services")
 should = require("should")
 Charlatan = require("charlatan")
 
