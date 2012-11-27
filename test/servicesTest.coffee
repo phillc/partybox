@@ -66,6 +66,5 @@ describe "youTube", ->
             title: "FunTime"
           }
         ]
-
         done()
 
