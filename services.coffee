@@ -1,6 +1,5 @@
 https = require("https")
 querystring = require("querystring")
-config = require("./config")
 
 exports.youTube =
   _request: (path, headers, params, callback) ->

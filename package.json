@@ -20,9 +20,7 @@
     "charlatan": "0.1.1",
     "mocha": "1.7.0",
     "should": "1.2.1",
-    "sinon": "1.5.0"
-  },
-  "scripts": {
-    "test": "mocha ./test/unit"
+    "sinon": "1.5.0",
+    "zombie": "2.0.0-alpha9"
   }
 }
