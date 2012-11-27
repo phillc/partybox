@@ -1,4 +1,4 @@
-require("./testHelper")
+require("../testHelper")
 models = require("../../models")
 services = require("../../services")
 should = require("should")

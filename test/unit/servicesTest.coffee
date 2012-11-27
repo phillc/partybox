@@ -1,4 +1,4 @@
-require("./testHelper")
+require("../testHelper")
 should = require("should")
 services = require("../../services")
 Charlatan = require("charlatan")
