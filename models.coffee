@@ -32,7 +32,7 @@ UserSchema.statics.findOrCreateForLogin = (metadata, authToken, callback) ->
         if err
           callback err
         else
-          user.youTubeId = profile.youTubeId
+          user.youTubeId = profile.userId
           user.save callback
 
 exports.User = User = mongoose.model("User", UserSchema)

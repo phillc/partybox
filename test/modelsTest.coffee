@@ -7,7 +7,7 @@ Charlatan = require("charlatan")
 describe "User", ->
   beforeEach (done) ->
     @youTubeProfile =
-      youTubeId: Charlatan.Helpers.rand(0, 10000).toString()
+      userId: Charlatan.Helpers.rand(0, 10000).toString()
 
     @sinon.stub(services.youTube, "getUserProfile").yields null, @youTubeProfile
 
@@ -57,7 +57,7 @@ describe "User", ->
 
     it "fetches the youtube id", (done) ->
       models.User.findOrCreateForLogin @googleUserMetadata, "", (err, user) =>
-        user.youTubeId.should.equal @youTubeProfile.youTubeId
+        user.youTubeId.should.equal @youTubeProfile.userId
         done()
 
 

@@ -35,7 +35,7 @@ exports.youTube =
 
     @_request "users/default", headers, params, (err, payload) ->
       callback err,
-        youTubeId: payload.entry.yt$userId.$t
+        userId: payload.entry.yt$userId.$t
 
   getUserPlaylists: (userId, callback) ->
     params =
@@ -44,6 +44,11 @@ exports.youTube =
       "Accept": "application/json"
       "User-Agent": "PartyBox"
       "GData-Version": 2
-    youtubeRequest "users/#{userId}/playlists", headers, params, callback
+    @_request "users/#{userId}/playlists", headers, params, (err, payload) ->
+      callback err,
+        for item in payload.data.items
+          playlistId: item.id
+          title: item.title
+
 
 
