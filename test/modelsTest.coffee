@@ -1,10 +1,16 @@
 require("./testHelper")
 models = require("../models")
+services = require("../services")
 should = require("should")
 Charlatan = require("charlatan")
 
 describe "User", ->
   beforeEach (done) ->
+    @youTubeProfile =
+      youTubeId: Charlatan.Helpers.rand(0, 10000).toString()
+
+    @sinon.stub(services.youTube, "getUserProfile").yields null, @youTubeProfile
+
     firstName = Charlatan.Name.firstName()
     lastName = Charlatan.Name.lastName()
     @googleUserMetadata =
@@ -51,7 +57,7 @@ describe "User", ->
 
     it "fetches the youtube id", (done) ->
       models.User.findOrCreateForLogin @googleUserMetadata, "", (err, user) =>
-        user.youTubeId.should.equal "1234"
+        user.youTubeId.should.equal @youTubeProfile.youTubeId
         done()
 
 

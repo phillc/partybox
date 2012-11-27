@@ -21,10 +21,7 @@ exports.youTube =
           console.log "Error parsing youtube api response", error, data
           return callback error, data
 
-        if payload.error
-          callback payload.error, payload
-        else
-          callback null, payload
+        callback payload.error, payload
 
   getUserProfile: (authToken, callback) ->
     params =
@@ -36,7 +33,7 @@ exports.youTube =
       "GData-Version": 2
       "Authorization": "OAuth #{authToken}"
 
-    youtubeRequest "users/default", headers, params, (err, payload) ->
+    @_request "users/default", headers, params, (err, payload) ->
       callback err,
         youTubeId: payload.entry.yt$userId.$t
 

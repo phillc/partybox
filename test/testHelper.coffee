@@ -1,8 +1,11 @@
+sinon = require("sinon")
+services = require("./../services")
+
 require("mongoose").connect "mongodb://localhost/partybox_test"
 
-services = require("./../services")
-services.youTube =
-  getUserProfile: (authToken, callback) ->
-    callback null,
-      youTubeId: "1234"
+beforeEach ->
+  @sinon = sinon.sandbox.create();
+  @sinon.stub services.youTube, "_request"
 
+afterEach ->
+  @sinon.restore()
