@@ -8,7 +8,7 @@
   "dependencies": {
     "coffee-script": "1.4.x",
     "everyauth": "0.3.x",
-    "mongoose": "3.3.x",
+    "mongoose": "5.10.x",
     "socketstream": "0.3.2",
     "ss-stylus": "0.1.x",
     "ss-hogan": "0.1.x",
